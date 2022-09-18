@@ -1,0 +1,7 @@
+#imgbackground{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("../../assets/img/bg.png");
+    min-height: 80vh;    
+    position: relative;
+}
