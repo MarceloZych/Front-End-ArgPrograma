@@ -1,3 +1,12 @@
 .card{
     width: 18rem;
 }
+
+.title{
+    text-shadow: 1px 1px 2px black;
+    font-family: sans-serif;
+    font: 24px
+
+}
+
+    

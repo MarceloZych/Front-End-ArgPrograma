@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <h1 class="title my-3 text-center">Proyecto</h1>
-        <div class="card col">
+        <div class="card col mx-3">
             <img src="../../../assets/img/no-image.webp" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -9,7 +9,7 @@
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
-          <div class="card col">
+          <div class="card col mx-3">
             <img src="../../../assets/img/no-image.webp" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -17,7 +17,7 @@
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
-          <div class="card col">
+          <div class="card col mx-3">
             <img src="../../../assets/img/no-image.webp" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -25,7 +25,7 @@
               <a href="#" class="btn btn-primary">Go somewhere</a>
             </div>
           </div>
-          <div class="card col">
+          <div class="card col mx-3">
             <img src="../../../assets/img/no-image.webp" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">Card title</h5>
@@ -34,4 +34,37 @@
             </div>
           </div>
     </div>
+</div>
+
+<div class="container">
+  <h1 class="title text-info text-center m-5">Expericnecia laboral</h1>
+  <div class="row justify-content-center">
+    <div class="col-lg-2">
+      <button type="button" class="btn btn-dark" routerLink="/newexp">
+        Nueva Experiencia
+      </button>
+    </div>
+
+    <div class="col-lg-12">
+      <table class="table">
+        <tbody>
+          <tr *ngFor="let Experience of expe">
+            <td>{{Experience.nameE}}</td>
+            <td>{{Experience.desc_exp}}</td>
+            <td *ngIf="isLoggedIn">
+              <button class="btn btn-warning" routerLink="/editexp/{{Experience.id}}">
+                <i class="bi bi-pencil-square"></i>
+              </button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="delete(Experience.id)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>    
+  </div>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/_service/auth.service';
+import { StorageService } from 'src/app/_service/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  form: any = {
+    email: null,
+    password: null
+  };
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
+
+  constructor(private authService: AuthService, private storageService: StorageService) { }
 
   ngOnInit(): void {
+    if (this.storageService.isLoggedIn()) {
+      this.isLoggedIn = true;
+      this.roles = this.storageService.getUser().roles;
+    }
   }
 
+  onSubmit(): void {
+    const { email, password } = this.form;
+
+    console.log(email, password);
+    this.authService.login(email, password).subscribe({
+      next: data => {
+        console.log(data);
+        
+        this.storageService.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.storageService.getUser().roles;
+        this.reloadPage();
+      },
+      error: err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    });
+
+  }
+  reloadPage(): void {
+    window.location.reload();
+  }
 }
