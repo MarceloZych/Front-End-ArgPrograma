@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Exp } from '../components/model/Exp';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ExpServiceService {
   
-  expURL = 'http://localhost:8080/api/v1/exp/'
+  expURL = environment.URL + '/api/v1/exp/'
 
   constructor(private httpClient: HttpClient) { }
 
